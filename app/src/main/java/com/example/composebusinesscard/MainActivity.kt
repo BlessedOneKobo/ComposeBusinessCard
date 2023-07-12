@@ -5,12 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -41,28 +45,50 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun UserContactSection(modifier: Modifier = Modifier) {
+    val spacingDp = 16.dp
+
+    Column {
+        ContactInformation(
+            icon = Icons.Default.Phone,
+            text = "+11 (123) 444 555 666",
+            modifier = modifier.padding(bottom = spacingDp)
+        )
+        ContactInformation(
+            icon = Icons.Default.Share,
+            text = "@AndroidDev",
+            modifier = modifier.padding(bottom = spacingDp),
+        )
+        ContactInformation(
+            icon = Icons.Default.Email,
+            text = "jen.doe@android.com",
+        )
+    }
+}
+
+@Composable
 fun ContactInformation(icon: ImageVector, text: String, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier,
     ) {
         Icon(
             imageVector = icon,
             contentDescription = null,
             tint = Color(0xFF3ddc84),
         )
-        Spacer(modifier.size(12.dp))
+        Spacer(modifier.size(16.dp))
         Text(
             text = text
         )
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun BusinessCardPreview() {
     ComposeBusinessCardTheme {
-        ContactInformation(icon = Icons.Default.Phone, text = "+00 (00) 000 000")
+        UserContactSection()
     }
 }
