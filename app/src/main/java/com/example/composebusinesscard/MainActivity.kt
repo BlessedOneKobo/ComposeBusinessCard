@@ -71,7 +71,8 @@ fun UserBioSection(fullName: String, jobTitle: String, modifier: Modifier = Modi
         Spacer(modifier.size(12.dp))
         Text(
             text = jobTitle,
-            color = Color(0xFF3ddc84),
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF006c3a),
         )
     }
 }
