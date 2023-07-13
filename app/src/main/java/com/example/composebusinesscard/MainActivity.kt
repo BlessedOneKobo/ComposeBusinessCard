@@ -6,10 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,8 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composebusinesscard.ui.theme.ComposeBusinessCardTheme
@@ -44,8 +47,32 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    BusinessCard()
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun BusinessCard(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .background(color = Color(0xFFd2e8d4))
+            .padding(0.dp)
+            .fillMaxHeight(),
+        contentAlignment = Alignment.BottomEnd,
+    ) {
+        Column(
+            modifier = modifier
+                .fillMaxHeight(0.75F)
+                .fillMaxWidth()
+                .padding(bottom = 32.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            UserBioSection(fullName = "Jennifer Doe", jobTitle = "Android Developer Extraordinaire")
+            UserContactSection()
         }
     }
 }
@@ -109,7 +136,7 @@ fun ContactInformation(icon: ImageVector, text: String, modifier: Modifier = Mod
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = Color(0xFF3ddc84),
+            tint = Color(0xFF006c3a),
         )
         Spacer(modifier.size(16.dp))
         Text(
@@ -122,6 +149,6 @@ fun ContactInformation(icon: ImageVector, text: String, modifier: Modifier = Mod
 @Composable
 fun BusinessCardPreview() {
     ComposeBusinessCardTheme {
-        UserBioSection(fullName = "Jennifer Doe", jobTitle = "Android Developer Extraordinaire")
+        BusinessCard()
     }
 }
